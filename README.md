@@ -122,3 +122,62 @@ dotnet run --project SIEG_Test.Api
 ## A API ficará disponível em:
 
 http://localhost:5154
+
+
+## Como rodar os testes
+
+Entre no projeto de testes:
+
+cd SIEG_Test.Testes
+
+
+Rode todos os testes unitários e de integração:
+
+dotnet test
+
+
+
+## Decisões de arquitetura e modelagem
+
+Camadas da aplicação:
+
+Controllers: endpoints HTTP (REST)
+
+DTOs: objetos de entrada/saída da API
+
+Models: entidades persistidas no MongoDB
+
+Services: lógica de negócio, incluindo persistência e publicação em RabbitMQ
+
+Tests: testes unitários e de integração com Mongo2Go (MongoDB in-memory)
+
+MongoDB foi escolhido pela flexibilidade em lidar com XML armazenado em formato raw + hash para deduplicação.
+
+RabbitMQ foi integrado para cenários de mensageria/eventos (ex: disparo de notificações ou workflows assíncronos).
+
+DTO separado do Model: mantém a API desacoplada do modelo de persistência, evitando vazamento de detalhes internos.
+
+
+## Tratamento de dados sensíveis
+
+ConnectionStrings do MongoDB e credenciais do RabbitMQ não são hardcoded: ficam em appsettings.json e podem ser sobrepostas por variáveis de ambiente.
+
+Nunca armazenamos senhas ou tokens diretamente no código-fonte.
+
+XMLs são armazenados no banco com hash calculado (SHA256), para facilitar deduplicação sem expor o conteúdo completo em logs.
+
+
+
+## Possíveis melhorias (se tivesse mais tempo)
+
+Autenticação e Autorização
+Implementar autenticação (JWT) para proteger os endpoints.
+
+Validação de XMLs
+Usar XSD ou esquemas oficiais da SEFAZ para validar NFes, CTes etc.
+
+Escalabilidade
+Colocar API em containers (Docker) e configurar réplicas do MongoDB e RabbitMQ.
+
+Testes mais robustos
+Ampliar cobertura de testes de carga e de integração, incluindo cenários de falha de conexão com MongoDB ou RabbitMQ.
