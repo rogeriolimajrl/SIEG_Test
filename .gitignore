@@ -1,0 +1,68 @@
+# =====================================
+# Pastas de build do .NET
+# =====================================
+bin/
+obj/
+out/
+
+# =====================================
+# Configurações do Visual Studio
+# =====================================
+.vs/
+*.user
+*.suo
+*.pdb
+*.cache
+*.ilk
+*.log
+*.ncb
+*.sdf
+*.opensdf
+*.dbmdl
+*.VC.db
+*.VC.VC.opendb
+
+# =====================================
+# Configurações do Rider/JetBrains
+# =====================================
+.idea/
+*.iml
+
+# =====================================
+# Arquivos de publicação
+# =====================================
+*.publish.xml
+*.azurePubxml
+*.scsproj.user
+
+# =====================================
+# Configurações locais sensíveis
+# =====================================
+appsettings.Development.json
+*.local.json
+*.secret.json
+
+# =====================================
+# NUnit / Testes
+# =====================================
+TestResults/
+*.TestResult.xml
+*.trx
+
+# =====================================
+# MongoDB / RabbitMQ
+# =====================================
+# Se você tiver arquivos de dump ou logs locais
+*.bson
+*.dump
+*.rabbitmq
+*.mq
+
+# =====================================
+# Outros arquivos temporários
+# =====================================
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
